@@ -13,6 +13,9 @@ pool:
 jobs:
   - job: Deploy
     steps:
+      - task: CmdLine@2
+        inputs:
+          script: 'apt install azure-cli -y'
       - task: AzureResourceManagerTemplateDeployment@3
         displayName: 'Validate deployment'
         inputs:
