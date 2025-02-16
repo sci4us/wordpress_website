@@ -21,6 +21,6 @@ jobs:
           subscriptionId: $(subscriptionId)
           location: 'UK West'
           templateLocation: 'Linked artifact'
-          csmFile: 'azure_infrastructure\main.bicep'
-          csmParametersFile: 'azure_infrastructure\main.parameters.json'
+          csmFile: 'azure_infrastructure/main.bicep'
+          csmParametersFile: 'azure_infrastructure/main.parameters.json'
           deploymentMode: 'Validation'
