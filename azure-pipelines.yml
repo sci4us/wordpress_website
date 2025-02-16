@@ -15,7 +15,7 @@ jobs:
     steps:
       - task: CmdLine@2
         inputs:
-          script: 'sudo apt install azure-cli -y'
+          script: 'sudo apt-get update && sudo apt-get install azure-cli'
       - task: AzureResourceManagerTemplateDeployment@3
         displayName: 'Validate deployment'
         inputs:
