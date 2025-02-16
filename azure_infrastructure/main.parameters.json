@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "resourceGroupName": {
-        "value": "${AZURE_RG_NAME}"
+        "value": "rg-wordpress"
       },
       "resourceGroupLocation": {
-        "value": "${AZURE_LOCATION}"
+        "value": "ukwest"
       },
       "deploymentTags": {
         "value": {
