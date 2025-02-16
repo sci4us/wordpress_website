@@ -13,6 +13,9 @@ pool:
 jobs:
   - job: Deploy
     steps:
+      - task: CmdLine@2
+        inputs:
+          script: 'curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
       - task: AzureResourceManagerTemplateDeployment@3
         displayName: 'Validate deployment'
         inputs:
