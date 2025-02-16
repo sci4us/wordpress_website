@@ -1,0 +1,67 @@
+services:
+
+  database:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - database:/var/lib/mysql
+    networks:
+      - back_tier
+
+  wordpress:
+    image: wordpress:${WORDPRESS_VERSION:-php7.4-apache}
+    restart: always
+    ports:
+      - 8080:80
+      - 80:80
+    environment:
+      WORDPRESS_DB_HOST: database
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wordpress:/var/www/html
+      - /Users/amit_sinha/development/sci4us/wordpress_website/wordpress_files:/wordpress_files:/wordpress_files
+    depends_on:
+      - database
+    networks:
+      - app_tier
+      - back_tier
+
+
+  # webserver:
+  #   depends_on:
+  #     - wordpress
+  #   image: nginx:latest
+  #   container_name: webserver
+  #   restart: unless-stopped
+  #   ports:
+  #     - "443:8843"
+  #   volumes:
+  #     - wordpress:/var/www/html
+  #     - ./nginx-conf:/etc/nginx/conf.d
+  #   networks:
+  #     - front_tier
+  #     - app_tier
+
+# configs:
+#   httpd-config:
+#     external: true
+
+volumes:
+  wordpress:
+  database:
+
+
+networks:
+  front_tier: {}
+  app_tier: {}
+  back_tier: {}
+
+
+
