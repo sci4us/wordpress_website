@@ -15,7 +15,7 @@ jobs:
     steps:
       - task: CmdLine@2
         inputs:
-          script: 'sudo apt-get update && sudo apt-get install azure-cli'
+          script: 'curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
       - task: AzureResourceManagerTemplateDeployment@3
         displayName: 'Validate deployment'
         inputs:
